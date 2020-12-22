@@ -33,8 +33,8 @@ namespace Calendaris.Server.Configuracions
             builder.Property(c => c.Email1).HasColumnName("Email1").HasMaxLength(100).IsUnicode(false);
             builder.Property(c => c.Email2).HasColumnName("Email2").HasMaxLength(100).IsUnicode(false);
             builder.Property(c => c.Email3).HasColumnName("Email3").HasMaxLength(100).IsUnicode(false);
-            builder.Property(c => c.DataAlta).HasColumnName("DataAlta").IsRequired();
-            builder.Property(c => c.DataBaixa).HasColumnName("DataBaixa");
+            builder.Property(c => c.DataAlta).HasColumnName("DataAlta").HasColumnType("Date").IsRequired();
+            builder.Property(c => c.DataBaixa).HasColumnName("DataBaixa").HasColumnType("Date");
             builder.Property(c => c.Observacions).HasColumnName("Observacions").HasMaxLength(500).IsUnicode(false);
         }
     }

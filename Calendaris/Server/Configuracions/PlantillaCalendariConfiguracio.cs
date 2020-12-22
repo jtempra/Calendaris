@@ -14,8 +14,8 @@ namespace Calendaris.Server.Configuracions
         {
             builder.ToTable("PlantillesCalendari");
             builder.HasKey("Id");
-            builder.Property(c => c.DataInici).HasColumnName("DataInici").IsRequired();
-            builder.Property(c => c.DataFinal).HasColumnName("DataFinal");
+            builder.Property(c => c.DataInici).HasColumnName("DataInici").HasColumnType("Date").IsRequired();
+            builder.Property(c => c.DataFinal).HasColumnName("DataFinal").HasColumnType("Date");
             builder.Property(c => c.Observacions).HasColumnName("Observacions").HasMaxLength(500).IsUnicode(false);
         }
     }

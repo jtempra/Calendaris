@@ -14,7 +14,7 @@ namespace Calendaris.Server.Configuracions
         {
             builder.ToTable("CalendarisFestes");
             builder.HasKey("Id");
-            builder.Property(c => c.Data).HasColumnName("Data").IsRequired();
+            builder.Property(c => c.Data).HasColumnName("Data").HasColumnType("Date").IsRequired();
             builder.Property(c => c.Festa).HasColumnName("Festa").HasMaxLength(50).IsRequired().IsUnicode(false);
             builder.Property(c => c.Tipus).HasColumnName("Tipus").IsRequired();
             builder.Property(c => c.Observacions).HasColumnName("Observacions").HasMaxLength(500).IsUnicode(false);

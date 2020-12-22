@@ -15,7 +15,7 @@ namespace Calendaris.Server.Configuracions
             builder.ToTable("CalendarisTreballador");
             builder.HasKey("Id");
             builder.Property(c => c.Any).HasColumnName("Any").IsRequired();
-            builder.Property(c => c.DataConfeccio).HasColumnName("DataConfeccio").IsRequired();
+            builder.Property(c => c.DataConfeccio).HasColumnName("DataConfeccio").HasColumnType("Date").IsRequired();
             builder.Property(c => c.Observacions).HasColumnName("Observacions").HasMaxLength(500).IsUnicode(false);
         }
     }

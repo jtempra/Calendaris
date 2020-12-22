@@ -17,7 +17,8 @@ namespace Calendaris.Server.Configuracions
             builder.Property(c => c.Codi).HasColumnName("Codi").HasMaxLength(50).IsRequired().IsUnicode(false);
             builder.Property(c => c.Nom).HasColumnName("Nom").HasMaxLength(100).IsRequired().IsUnicode(false);
             builder.Property(c => c.HoresAnuals).HasColumnName("HoresAnuals").IsRequired();
-            builder.Property(c => c.DataInici).HasColumnName("DataInici").IsRequired();
+            builder.Property(c => c.DataInici).HasColumnName("DataInici").HasColumnType("Date").IsRequired();
+            builder.Property(c => c.DataFinal).HasColumnName("DataFinal").HasColumnType("Date");
             builder.Property(c => c.Observacions).HasColumnName("Observacions").HasMaxLength(500).IsUnicode(false);
         }
     }
