@@ -225,6 +225,33 @@ namespace Calendaris.Server.Migrations
                     { 12, new DateTime(2021, 12, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "Nadal", null, 2 }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Convenis",
+                columns: new[] { "Id", "Codi", "DataFinal", "DataInici", "HoresAnuals", "Nom", "Observacions" },
+                values: new object[,]
+                {
+                    { 3, "79001565011999", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2019, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified), 1250, "Centres especials de treballadors disminuits fisics o sensorials de Catalunya", null },
+                    { 1, "79002575012007", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 1600, "Acció social amb infants, joves, families i d'altres, en situació de risc", null },
+                    { 2, "79002795012009", new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), new DateTime(2014, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified), 1500, "Associacions per discapacitats", null }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Treballadors",
+                columns: new[] { "Id", "Adreça", "CP", "Centre", "Codi", "DataAlta", "DataBaixa", "Departament", "Email1", "Email2", "Email3", "Mobil1", "Mobil2", "Mobil3", "NIF", "NSS", "Nom", "Observacions", "Poblacio", "PrimerCognom", "Provincia", "SegonCognom", "Telefon1", "Telefon2", "Telefon3" },
+                values: new object[,]
+                {
+                    { 9, "Carrer Industria 88-4-4", "08000", 0, "T9", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 3, "hectorruc@gmail.com", null, null, "600102030", null, null, "90785940I", "083425475900", "Hector", null, "Barcelona", "Rucol", "Barcelona", "Broquil", "938065434", null, null },
+                    { 1, "Carrer Badal, 45", "08000", 0, "T1", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "jlopez@terra.es", null, null, "600102030", null, null, "77653456A", "081234567890", "Joan", null, "Barcelona", "Lopez", "Barcelona", "Teclas", "938065434", null, null },
+                    { 2, "Calle los Mañicos, 56", "50000", 0, "T2", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "jgvacas@gmail.com", null, null, "600102030", null, null, "67345768B", "501234567890", "Julia", null, "Zaragoza", "Garcia", "Zaragoza", "Vacas", "976436574", null, null },
+                    { 3, "Carrer de les Falles", "46000", 0, "T3", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 1, "ramirr@gmail.com", null, null, "600102030", null, null, "19463891C", "461234567890", "Ramir", null, "Valencia", "Rodriguez", "Valencia", "Samuel", "966543546", null, null },
+                    { 4, "Avinguda Europa, 123-4rt-5ª", "08000", 0, "T4", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 5, "aporrata@hotmail.com", null, null, "600102030", null, null, "47586923D", "088934675421", "Angel", null, "Barcelona", "Porrata", "Barcelona", "Pesarrodona", "938065434", null, null },
+                    { 5, "Carrer de Gaudi, 56-1", "08000", 0, "T5", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 3, "isasanti@gmail.com", null, null, "600102030", null, null, "79583452E", "084578695473", "Isabel", null, "Barcelona", "Santisteban", "Barcelona", "Junqueres", "938065434", null, null },
+                    { 6, "Carretera de les Aigues s/n", "08000", 0, "T6", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 6, "mpoltre@fcat.cat", null, null, "600102030", null, null, "89562854F", "086736593712", "Maria", null, "Barcelona", "Poltre", "Barcelona", "Patrixol", "938065434", null, null },
+                    { 7, "Passeig Sant Joan, 23-Atic", "08000", 0, "T7", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, "mmassanes@terra.es", null, null, "600102030", null, null, "10694825G", "080898786757", "Montse", null, "Barcelona", "Massanes", "Barcelona", "Ameba", "938065434", null, null },
+                    { 8, "Carrer Petrixol, 34", "08000", 0, "T8", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 4, "Ignasic@diba.cat", null, null, "600102030", null, null, "69372517H", "085647987809", "Ignasi", null, "Barcelona", "Codina", "Barcelona", "Pujol", "938065434", null, null },
+                    { 10, "Plaça del Pes de la Palla 4-1", "08000", 0, "T10", new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified), null, 2, "vbascara@ffc.com", null, null, "600102030", null, null, "80583760J", "080808786757", "Victor", null, "Barcelona", "Bascara", "Barcelona", "Costa", "938065434", null, null }
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_CalendarisTreballador_TreballadorId",
                 table: "CalendarisTreballador",

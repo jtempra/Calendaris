@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Calendaris.Server.Migrations
 {
     [DbContext(typeof(CalendarisDbContext))]
-    [Migration("20201222112208_inicial")]
+    [Migration("20201222221419_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -213,6 +213,35 @@ namespace Calendaris.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Convenis");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Codi = "79002575012007",
+                            DataFinal = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataInici = new DateTime(2020, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HoresAnuals = 1600,
+                            Nom = "Acció social amb infants, joves, families i d'altres, en situació de risc"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Codi = "79002795012009",
+                            DataFinal = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataInici = new DateTime(2014, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HoresAnuals = 1500,
+                            Nom = "Associacions per discapacitats"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Codi = "79001565011999",
+                            DataFinal = new DateTime(1, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataInici = new DateTime(2019, 2, 7, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HoresAnuals = 1250,
+                            Nom = "Centres especials de treballadors disminuits fisics o sensorials de Catalunya"
+                        });
                 });
 
             modelBuilder.Entity("Calendaris.Shared.Entities.ConveniTreballador", b =>
@@ -543,6 +572,208 @@ namespace Calendaris.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Treballadors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Adreça = "Carrer Badal, 45",
+                            CP = "08000",
+                            Centre = 0,
+                            Codi = "T1",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 1,
+                            Email1 = "jlopez@terra.es",
+                            Mobil1 = "600102030",
+                            NIF = "77653456A",
+                            NSS = "081234567890",
+                            Nom = "Joan",
+                            Poblacio = "Barcelona",
+                            PrimerCognom = "Lopez",
+                            Provincia = "Barcelona",
+                            SegonCognom = "Teclas",
+                            Telefon1 = "938065434"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Adreça = "Calle los Mañicos, 56",
+                            CP = "50000",
+                            Centre = 0,
+                            Codi = "T2",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 1,
+                            Email1 = "jgvacas@gmail.com",
+                            Mobil1 = "600102030",
+                            NIF = "67345768B",
+                            NSS = "501234567890",
+                            Nom = "Julia",
+                            Poblacio = "Zaragoza",
+                            PrimerCognom = "Garcia",
+                            Provincia = "Zaragoza",
+                            SegonCognom = "Vacas",
+                            Telefon1 = "976436574"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Adreça = "Carrer de les Falles",
+                            CP = "46000",
+                            Centre = 0,
+                            Codi = "T3",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 1,
+                            Email1 = "ramirr@gmail.com",
+                            Mobil1 = "600102030",
+                            NIF = "19463891C",
+                            NSS = "461234567890",
+                            Nom = "Ramir",
+                            Poblacio = "Valencia",
+                            PrimerCognom = "Rodriguez",
+                            Provincia = "Valencia",
+                            SegonCognom = "Samuel",
+                            Telefon1 = "966543546"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Adreça = "Avinguda Europa, 123-4rt-5ª",
+                            CP = "08000",
+                            Centre = 0,
+                            Codi = "T4",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 5,
+                            Email1 = "aporrata@hotmail.com",
+                            Mobil1 = "600102030",
+                            NIF = "47586923D",
+                            NSS = "088934675421",
+                            Nom = "Angel",
+                            Poblacio = "Barcelona",
+                            PrimerCognom = "Porrata",
+                            Provincia = "Barcelona",
+                            SegonCognom = "Pesarrodona",
+                            Telefon1 = "938065434"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Adreça = "Carrer de Gaudi, 56-1",
+                            CP = "08000",
+                            Centre = 0,
+                            Codi = "T5",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 3,
+                            Email1 = "isasanti@gmail.com",
+                            Mobil1 = "600102030",
+                            NIF = "79583452E",
+                            NSS = "084578695473",
+                            Nom = "Isabel",
+                            Poblacio = "Barcelona",
+                            PrimerCognom = "Santisteban",
+                            Provincia = "Barcelona",
+                            SegonCognom = "Junqueres",
+                            Telefon1 = "938065434"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Adreça = "Carretera de les Aigues s/n",
+                            CP = "08000",
+                            Centre = 0,
+                            Codi = "T6",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 6,
+                            Email1 = "mpoltre@fcat.cat",
+                            Mobil1 = "600102030",
+                            NIF = "89562854F",
+                            NSS = "086736593712",
+                            Nom = "Maria",
+                            Poblacio = "Barcelona",
+                            PrimerCognom = "Poltre",
+                            Provincia = "Barcelona",
+                            SegonCognom = "Patrixol",
+                            Telefon1 = "938065434"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Adreça = "Passeig Sant Joan, 23-Atic",
+                            CP = "08000",
+                            Centre = 0,
+                            Codi = "T7",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 2,
+                            Email1 = "mmassanes@terra.es",
+                            Mobil1 = "600102030",
+                            NIF = "10694825G",
+                            NSS = "080898786757",
+                            Nom = "Montse",
+                            Poblacio = "Barcelona",
+                            PrimerCognom = "Massanes",
+                            Provincia = "Barcelona",
+                            SegonCognom = "Ameba",
+                            Telefon1 = "938065434"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Adreça = "Carrer Petrixol, 34",
+                            CP = "08000",
+                            Centre = 0,
+                            Codi = "T8",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 4,
+                            Email1 = "Ignasic@diba.cat",
+                            Mobil1 = "600102030",
+                            NIF = "69372517H",
+                            NSS = "085647987809",
+                            Nom = "Ignasi",
+                            Poblacio = "Barcelona",
+                            PrimerCognom = "Codina",
+                            Provincia = "Barcelona",
+                            SegonCognom = "Pujol",
+                            Telefon1 = "938065434"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Adreça = "Carrer Industria 88-4-4",
+                            CP = "08000",
+                            Centre = 0,
+                            Codi = "T9",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 3,
+                            Email1 = "hectorruc@gmail.com",
+                            Mobil1 = "600102030",
+                            NIF = "90785940I",
+                            NSS = "083425475900",
+                            Nom = "Hector",
+                            Poblacio = "Barcelona",
+                            PrimerCognom = "Rucol",
+                            Provincia = "Barcelona",
+                            SegonCognom = "Broquil",
+                            Telefon1 = "938065434"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Adreça = "Plaça del Pes de la Palla 4-1",
+                            CP = "08000",
+                            Centre = 0,
+                            Codi = "T10",
+                            DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Departament = 2,
+                            Email1 = "vbascara@ffc.com",
+                            Mobil1 = "600102030",
+                            NIF = "80583760J",
+                            NSS = "080808786757",
+                            Nom = "Victor",
+                            Poblacio = "Barcelona",
+                            PrimerCognom = "Bascara",
+                            Provincia = "Barcelona",
+                            SegonCognom = "Costa",
+                            Telefon1 = "938065434"
+                        });
                 });
 
             modelBuilder.Entity("Calendaris.Shared.Entities.CalendariTreballador", b =>
