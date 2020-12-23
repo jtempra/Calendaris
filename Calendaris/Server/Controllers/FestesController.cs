@@ -10,29 +10,28 @@ using System.Threading.Tasks;
 
 namespace Calendaris.Server.Controllers
 {
+    
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/[controller]")]
     public class FestesController : ControllerBase
     {
 
-        private readonly ILogger<FestesController> _logger;
         private readonly CalendarisDbContext _context;
 
-        public FestesController(ILogger<FestesController> logger, CalendarisDbContext context)
+        public FestesController(CalendarisDbContext context)
         {
-            _logger = logger;
             _context = context;
         }
 
         [HttpGet]
-        public async Task<IActionResult> GetAll()
+        public async Task<IActionResult> Get()
         {
             var festes = await _context.CalendarisFestes.ToListAsync();
             return Ok(festes);
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetByType(int id)
+        public async Task<IActionResult> Get(int id)
         {
             var festes = await _context.CalendarisFestes.FirstOrDefaultAsync(f=>(int)f.Tipus == id);
             return Ok(festes);
@@ -58,8 +57,8 @@ namespace Calendaris.Server.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            var dev = new CalendariFestes { Id = id };
-            _context.Remove(dev);
+            var festa = new CalendariFestes { Id = id };
+            _context.Remove(festa);
             await _context.SaveChangesAsync();
             return NoContent();
         }

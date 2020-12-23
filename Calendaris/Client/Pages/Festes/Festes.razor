@@ -1,0 +1,70 @@
+﻿@page "/Festes"
+
+@inject HttpClient client
+@inject IJSRuntime js
+
+<h3>Festes</h3>
+
+<small>Pàgina per treballar amb les festes</small>
+
+<div class="form-group">
+    <a class="btn btn-success" href="Festes/create"><i class="oi oi-plus"></i> Crear Festa</a>
+</div>
+
+<br>
+@if (festes == null)
+{
+    <text>Loading...</text>
+}
+else if (festes.Length == 0)
+{
+    <text>No Records Found.</text>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Data</th>
+                <th>Festa</th>
+                <th>Tipus</th>
+                <th>Observacions</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (CalendariFestes fes in festes)
+            {
+                <tr>
+                    <td>@fes.Id</td>
+                    <td>@fes.Data</td>
+                    <td>@fes.Festa</td>
+                    <td>@fes.Tipus</td>
+                    <td>@fes.Observacions</td>
+                    <td>
+                        <a class="btn btn-success" href="festa/edit/@fes.Id">ar</a>
+                        <button class="btn btn-danger" @onclick="@(() => Delete(fes.Id))">Esborrar</button>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    CalendariFestes[] festes { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        festes = await client.GetFromJsonAsync<CalendariFestes[]>("api/Festes");
+    }
+    async Task Delete(int festaId)
+    {
+        var fes = festes.First(f => f.Id == festaId);
+        if (await js.InvokeAsync<bool>("confirm", $"Vols esborrar la festa {fes.Festa}?"))
+        {
+            await client.DeleteAsync($"Festes/{festaId}");
+            await OnInitializedAsync();
+        }
+    }
+}
