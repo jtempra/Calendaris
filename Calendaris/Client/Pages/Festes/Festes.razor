@@ -1,7 +1,7 @@
-﻿@page "/Festes"
+﻿@page "/festa"
 
-@inject HttpClient client
-@inject IJSRuntime js
+@inject IRepositori repositori
+
 
 <h3>Festes</h3>
 
@@ -12,11 +12,11 @@
 </div>
 
 <br>
-@if (festes == null)
+@if (festesCalendari == null)
 {
-    <text>Loading...</text>
+    <text>Carregant...</text>
 }
-else if (festes.Length == 0)
+else if (festesCalendari.Count == 0)
 {
     <text>No Records Found.</text>
 }
@@ -34,7 +34,7 @@ else
             </tr>
         </thead>
         <tbody>
-            @foreach (CalendariFestes fes in festes)
+            @foreach (CalendariFestes fes in festesCalendari)
             {
                 <tr>
                     <td>@fes.Id</td>
@@ -44,7 +44,7 @@ else
                     <td>@fes.Observacions</td>
                     <td>
                         <a class="btn btn-success" href="festa/edit/@fes.Id">ar</a>
-                        <button class="btn btn-danger" @onclick="@(() => Delete(fes.Id))">Esborrar</button>
+                        @*<button class="btn btn-danger" @onclick="@(() => Delete(fes.Id))">Esborrar</button>*@
                     </td>
                 </tr>
             }
@@ -52,19 +52,17 @@ else
     </table>
 }
 @code {
-    CalendariFestes[] festes { get; set; }
+    List<CalendariFestes>  festesCalendari { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
-        festes = await client.GetFromJsonAsync<CalendariFestes[]>("api/Festes");
-    }
-    async Task Delete(int festaId)
-    {
-        var fes = festes.First(f => f.Id == festaId);
-        if (await js.InvokeAsync<bool>("confirm", $"Vols esborrar la festa {fes.Festa}?"))
+        var responseHttp = await repositori.Get<List<CalendariFestes>>("api/festes");
+        if(!responseHttp.Error)
         {
-            await client.DeleteAsync($"Festes/{festaId}");
-            await OnInitializedAsync();
+            festesCalendari = responseHttp.Response;
         }
+
     }
+
+
 }

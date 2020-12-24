@@ -12,18 +12,6 @@ namespace Calendaris.Server.Controllers
     [Route("[controller]")]
     public class TreballadorsController : ControllerBase
     {
-        
-        private readonly ILogger<TreballadorsController> _logger;
 
-        public TreballadorsController(ILogger<TreballadorsController> logger)
-        {
-            _logger = logger;
-        }
-
-        [HttpGet]
-        public string Get()
-        {
-            return "lalala";
-        }
     }
 }
