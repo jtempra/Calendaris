@@ -1,7 +1,5 @@
-﻿@page "/festa"
-
+﻿@page "/Festes"
 @inject IRepositori repositori
-
 
 <h3>Festes</h3>
 
@@ -52,17 +50,23 @@ else
     </table>
 }
 @code {
-    List<CalendariFestes>  festesCalendari { get; set; }
+    List<CalendariFestes> festesCalendari { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         var responseHttp = await repositori.Get<List<CalendariFestes>>("api/festes");
-        if(!responseHttp.Error)
+        if (!responseHttp.Error)
         {
             festesCalendari = responseHttp.Response;
         }
+        else
+        {
+            var body = await responseHttp.HttpResponseMessage.Content.ReadAsStringAsync();
+            //Console.Writeline("body");
+        }
 
     }
+
 
 
 }

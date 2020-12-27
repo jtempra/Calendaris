@@ -8,6 +8,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using Syncfusion.Blazor;
+using Calendaris.Client.Repos;
 
 namespace Calendaris.Client
 {
@@ -22,10 +23,17 @@ namespace Calendaris.Client
             builder.RootComponents.Add<App>("#app");
 
             builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
-
+            
             builder.Services.AddSyncfusionBlazor();
 
+            ConfigureServices(builder.Services);
+
             await builder.Build().RunAsync();
+        }
+
+        private static void ConfigureServices(IServiceCollection services)
+        {
+            services.AddScoped<IRepositori, Repositori>();
         }
     }
 }

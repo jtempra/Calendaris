@@ -4,11 +4,11 @@ using System.Threading.Tasks;
 
 namespace Calendaris.Client.Repos
 {
-    public class Repositorio : IRepositori
+    public class Repositori : IRepositori
     {
         private readonly HttpClient _httpClient;
 
-        public Repositorio(HttpClient httpClient)
+        public Repositori(HttpClient httpClient)
         {
             _httpClient = httpClient;
         }

@@ -15,9 +15,9 @@ namespace Calendaris.Client.Repos
             HttpResponseMessage = httpResponseMessage;
         }
 
-        public bool Error { get; set; }
-        public T Response { get; set; }
-        public HttpResponseMessage HttpResponseMessage { get; set; }
+        public bool Error { get; set; } //error en la peticio http
+        public T Response { get; set; } // resposta deserialitzada
+        public HttpResponseMessage HttpResponseMessage { get; set; } // resposta complerta
 
         public async Task<string> GetBody()
         {
