@@ -9,6 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Syncfusion.Blazor;
 using Calendaris.Client.Repos;
+using Calendaris.Client.Helpers;
 
 namespace Calendaris.Client
 {
@@ -34,6 +35,7 @@ namespace Calendaris.Client
         private static void ConfigureServices(IServiceCollection services)
         {
             services.AddScoped<IRepositori, Repositori>();
+            services.AddScoped<IMostrarMissatges, MostrarMissatges>();
         }
     }
 }

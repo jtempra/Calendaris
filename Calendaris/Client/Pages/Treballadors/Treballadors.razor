@@ -1,0 +1,104 @@
+﻿@page "/treballadors"
+@inject IRepositori repositori
+
+<h3>Treballadors</h3>
+
+<small>Pàgina per veure els treballadors</small>
+
+<br>
+@if (treballadors == null)
+{
+    <text>Carregant...</text>
+}
+else if (treballadors.Count == 0)
+{
+    <text>No Records Found.</text>
+}
+else
+{
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Codi</th>
+                <th>Nom</th>
+                <th>Primer Cognom</th>
+                <th>Segon Cognom</th>
+                <th>NIF</th>
+                <th>NSS</th>
+                <th>Adreça</th>
+                <th>CP</th>
+                <th>Poblacio</th>
+                <th>Provincia</th>
+                <th>Telefon1</th>
+                <th>Telefon2</th>
+                <th>Telefon3</th>
+                <th>Mobil1</th>
+                <th>Mobil2</th>
+                <th>Mobil3</th>
+                <th>Email1</th>
+                <th>Email2</th>
+                <th>Email3</th>
+                <th>Centre</th>
+                <th>Departament</th>
+                <th>Data Alta</th>
+                <th>Data Baixa</th>
+                <th>Observacions</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (Treballador tre in treballadors)
+            {
+            <tr>
+                <td>@tre.Id</td>
+                <td>@tre.Codi</td>
+                <td>@tre.Nom</td>
+                <td>@tre.PrimerCognom</td>
+                <td>@tre.SegonCognom</td>
+                <td>@tre.NIF</td>
+                <td>@tre.NSS</td>
+                <td>@tre.Adreça</td>
+                <td>@tre.CP</td>
+                <td>@tre.Poblacio</td>
+                <td>@tre.Provincia</td>
+                <td>@tre.Telefon1</td>
+                <td>@tre.Telefon2</td>
+                <td>@tre.Telefon3</td>
+                <td>@tre.Mobil1</td>
+                <td>@tre.Mobil2</td>
+                <td>@tre.Mobil3</td>
+                <td>@tre.Email1</td>
+                <td>@tre.Email2</td>
+                <td>@tre.Email3</td>
+                <td>@tre.Centre</td>
+                <td>@tre.Departament</td>
+                <td>@tre.DataAlta</td>
+                <td>@tre.DataBaixa</td>
+                <td>@tre.Observacions</td>
+                <td>
+                    <a class="btn btn-success" href="treballadors/crear_plantilla/@tre.Id">Crear Plantilla</a>
+                    <a class="btn btn-danger" href="treballador/editar_plantilla/@tre.Id">Editar Plantilla</a>
+                </td>
+            </tr>
+            }
+        </tbody>
+    </table>
+}
+@code {
+    List<Treballador> treballadors { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CarregarTreballadors();
+    }
+
+    private async Task CarregarTreballadors()
+    {
+        var responseHttp = await repositori.Get<List<Treballador>>("api/treballadors");
+        if (!responseHttp.Error)
+        {
+            treballadors = responseHttp.Response;
+        }
+    }
+}

@@ -1,7 +1,7 @@
 ﻿@page "/festes/crear"
 @inject IRepositori repositori
 @inject NavigationManager navigationManager
-@*@inject IMostrarMensajes mostrarMensajes*@
+@inject IMostrarMissatges mostrarMissatges
 
 <h3>Crear Festa</h3>
 
@@ -16,7 +16,7 @@
         if (httpResponse.Error)
         {
             var body = await httpResponse.GetBody();
-            //await mostrarMensajes.MostrarMensajeError(body);
+            await mostrarMissatges.MostrarMissatgeError(body);
         }
         else
         {
