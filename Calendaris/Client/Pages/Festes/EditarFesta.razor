@@ -1,0 +1,55 @@
+﻿@page "/festes/editar/{FestaId:int}"
+@inject IRepositori repositori
+@*@inject IMostrarMensajes mostrarMensaje*@
+@inject NavigationManager navigationManager
+
+<h3>Editar Festa</h3>
+
+@if (Festa == null)
+{
+    <text>Carregant...</text> 
+}
+else
+{
+    <FormulariFesta OnValidSubmit="Editar" Festa="Festa" />
+}
+
+@code { 
+    [Parameter] public int FestaId { get; set; }
+            
+    private CalendariFestes Festa;
+
+    protected async override Task OnInitializedAsync()
+    {
+        var httpResponse = await repositori.Get<CalendariFestes>($"api/festes/{FestaId}");
+
+        if (httpResponse.Error)
+        {
+            if (httpResponse.HttpResponseMessage.StatusCode == System.Net.HttpStatusCode.NotFound)
+            {
+                navigationManager.NavigateTo("festes");
+            }
+            else
+            {
+                //await mostrarMensaje.MostrarMensajeError(await httpResponse.GetBody());
+            }
+        }
+        else
+        {
+            Festa = httpResponse.Response;
+        }
+    }
+
+    private async Task Editar()
+    {
+        var httpResponse = await repositori.Put("api/festes", Festa);
+        if (httpResponse.Error)
+        {
+            //await mostrarMensaje.MostrarMensajeError(await httpResponse.GetBody());
+        }
+        else
+        {
+            navigationManager.NavigateTo("festes");
+        }
+    } 
+}

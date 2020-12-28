@@ -1,0 +1,27 @@
+﻿@page "/festes/crear"
+@inject IRepositori repositori
+@inject NavigationManager navigationManager
+@*@inject IMostrarMensajes mostrarMensajes*@
+
+<h3>Crear Festa</h3>
+
+<FormulariFesta OnValidSubmit="Crear" Festa="Festa" />
+
+@code { 
+    private CalendariFestes Festa = new CalendariFestes();
+
+    private async Task Crear()
+    {
+        var httpResponse = await repositori.Post("api/festes", Festa);
+        if (httpResponse.Error)
+        {
+            var body = await httpResponse.GetBody();
+            //await mostrarMensajes.MostrarMensajeError(body);
+        }
+        else
+        {
+            navigationManager.NavigateTo("/festes");
+        }
+    } 
+}
+

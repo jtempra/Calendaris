@@ -40,18 +40,18 @@ namespace Calendaris.Server.Contextes
             // Data seeding
 
             modelBuilder.Entity<CalendariFestes>().HasData(
-                new CalendariFestes { Id = 1, Data = new DateTime(2021, 1, 1), Festa = "Cap d'Any", Tipus = Tipusfesta.Autonomica },
-                new CalendariFestes { Id = 2, Data = new DateTime(2021, 1, 6), Festa = "Reis", Tipus = Tipusfesta.Autonomica },
-                new CalendariFestes { Id = 3, Data = new DateTime(2021, 4, 2), Festa = "Divendres Sant", Tipus = Tipusfesta.Autonomica },
-                new CalendariFestes { Id = 4, Data = new DateTime(2021, 4, 5), Festa = "Dilluns de Pasqua", Tipus = Tipusfesta.Autonomica },
-                new CalendariFestes { Id = 5, Data = new DateTime(2021, 5, 1), Festa = "Primer de Maig", Tipus = Tipusfesta.Autonomica },
-                new CalendariFestes { Id = 6, Data = new DateTime(2021, 6, 24), Festa = "Sant Joan", Tipus = Tipusfesta.Autonomica },
-                new CalendariFestes { Id = 7, Data = new DateTime(2021, 9, 11), Festa = "Diada Nacional de CAT", Tipus = Tipusfesta.Autonomica },
-                new CalendariFestes { Id = 8, Data = new DateTime(2021, 10, 12), Festa = "Fiesta Nasiona Nyorda", Tipus = Tipusfesta.Nacional },
-                new CalendariFestes { Id = 9, Data = new DateTime(2021, 11, 1), Festa = "Tots Sants", Tipus = Tipusfesta.Autonomica },
-                new CalendariFestes { Id = 10, Data = new DateTime(2021, 12, 6), Festa = "Dia de la Constitucion Nyorda", Tipus = Tipusfesta.Nacional },
-                new CalendariFestes { Id = 11, Data = new DateTime(2021, 12, 8), Festa = "La Immaculada", Tipus = Tipusfesta.Autonomica },
-                new CalendariFestes { Id = 12, Data = new DateTime(2021, 12, 25), Festa = "Nadal", Tipus = Tipusfesta.Autonomica }
+                new CalendariFestes { Id = 1, Data = new DateTime(2021, 1, 1), Festa = "Cap d'Any", Tipus = TipusFesta.Autonomica },
+                new CalendariFestes { Id = 2, Data = new DateTime(2021, 1, 6), Festa = "Reis", Tipus = TipusFesta.Autonomica },
+                new CalendariFestes { Id = 3, Data = new DateTime(2021, 4, 2), Festa = "Divendres Sant", Tipus = TipusFesta.Autonomica },
+                new CalendariFestes { Id = 4, Data = new DateTime(2021, 4, 5), Festa = "Dilluns de Pasqua", Tipus = TipusFesta.Autonomica },
+                new CalendariFestes { Id = 5, Data = new DateTime(2021, 5, 1), Festa = "Primer de Maig", Tipus = TipusFesta.Autonomica },
+                new CalendariFestes { Id = 6, Data = new DateTime(2021, 6, 24), Festa = "Sant Joan", Tipus = TipusFesta.Autonomica },
+                new CalendariFestes { Id = 7, Data = new DateTime(2021, 9, 11), Festa = "Diada Nacional de CAT", Tipus = TipusFesta.Autonomica },
+                new CalendariFestes { Id = 8, Data = new DateTime(2021, 10, 12), Festa = "Fiesta Nasiona Nyorda", Tipus = TipusFesta.Nacional },
+                new CalendariFestes { Id = 9, Data = new DateTime(2021, 11, 1), Festa = "Tots Sants", Tipus = TipusFesta.Autonomica },
+                new CalendariFestes { Id = 10, Data = new DateTime(2021, 12, 6), Festa = "Dia de la Constitucion Nyorda", Tipus = TipusFesta.Nacional },
+                new CalendariFestes { Id = 11, Data = new DateTime(2021, 12, 8), Festa = "La Immaculada", Tipus = TipusFesta.Autonomica },
+                new CalendariFestes { Id = 12, Data = new DateTime(2021, 12, 25), Festa = "Nadal", Tipus = TipusFesta.Autonomica }
             );
 
             modelBuilder.Entity<Conveni>().HasData(

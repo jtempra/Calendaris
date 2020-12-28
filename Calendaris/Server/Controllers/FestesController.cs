@@ -26,42 +26,42 @@ namespace Calendaris.Server.Controllers
         [HttpGet]
         public async Task<ActionResult<List<CalendariFestes>>> Get()
         {
-            //var festes = await _context.CalendarisFestes.ToListAsync();
-            //return Ok(festes);
-            return await _context.CalendarisFestes.ToListAsync();
+            var festes = await _context.CalendarisFestes.ToListAsync();
+            return Ok(festes);
         }
 
-        //[HttpGet("{id}")]
-        //public async Task<ActionResult> Get(int id)
-        //{
-        //    var festes = await _context.CalendarisFestes.FirstOrDefaultAsync(f=>(int)f.Tipus == id);
-        //    return Ok(festes);
-        //}
+        [HttpGet("{id}")]
+        public async Task<ActionResult<CalendariFestes>> Get(int id)
+        {
+            var festa = await _context.CalendarisFestes.FirstOrDefaultAsync(f => f.Id == id);
+            return Ok(festa);
+        }
 
-        //[HttpPost]
-        //public async Task<ActionResult> Post(CalendariFestes festa)
-        //{
-        //    _context.Add(festa);
-        //    await _context.SaveChangesAsync();
-        //    return Ok(festa.Id);
-        //}
+        [HttpPost]
+        public async Task<ActionResult<int>> Post(CalendariFestes festa)
+        {
+            _context.Add(festa);
+            await _context.SaveChangesAsync();
+            return Ok(festa.Id);
+        }
 
-        //[HttpPut]
-        //public async Task<ActionResult> Put(CalendariFestes festa)
-        //{
-        //    _context.Entry(festa).State = EntityState.Modified;
-        //    await _context.SaveChangesAsync();
-        //    return NoContent();
-        //}
+        [HttpPut]
+        public async Task<ActionResult> Put(CalendariFestes festa)
+        {
+            _context.Attach(festa).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
 
 
-        //[HttpDelete("{id}")]
-        //public async Task<ActionResult> Delete(int id)
-        //{
-        //    var festa = new CalendariFestes { Id = id };
-        //    _context.Remove(festa);
-        //    await _context.SaveChangesAsync();
-        //    return NoContent();
-        //}
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var existeix = await _context.CalendarisFestes.AnyAsync(x => x.Id == id);
+            if (!existeix) { return NotFound(); }
+            _context.CalendarisFestes.Remove(new CalendariFestes { Id = id });
+            await _context.SaveChangesAsync();
+            return NoContent();
+        }
     }
 }

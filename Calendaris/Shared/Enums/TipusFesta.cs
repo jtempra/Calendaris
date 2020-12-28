@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calendaris.Shared.Enums
 {
-    public enum Tipusfesta
+    public enum TipusFesta
     {
         Empresa,
         Local,

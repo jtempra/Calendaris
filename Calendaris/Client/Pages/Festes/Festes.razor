@@ -1,4 +1,4 @@
-﻿@page "/Festes"
+﻿@page "/festes"
 @inject IRepositori repositori
 
 <h3>Festes</h3>
@@ -6,7 +6,7 @@
 <small>Pàgina per treballar amb les festes</small>
 
 <div class="form-group">
-    <a class="btn btn-success" href="Festes/create"><i class="oi oi-plus"></i> Crear Festa</a>
+    <a class="btn btn-success" href="festes/crear"><i class="oi oi-plus"></i> Crear Festa</a>
 </div>
 
 <br>
@@ -41,8 +41,8 @@ else
                     <td>@fes.Tipus</td>
                     <td>@fes.Observacions</td>
                     <td>
-                        <a class="btn btn-success" href="festa/edit/@fes.Id">ar</a>
-                        @*<button class="btn btn-danger" @onclick="@(() => Delete(fes.Id))">Esborrar</button>*@
+                        <a class="btn btn-success" href="festes/editar/@fes.Id">Editar</a>
+                        <button class="btn btn-danger" @onclick="@(() => EsborrarFesta(fes))">Esborrar</button>
                     </td>
                 </tr>
             }
@@ -54,19 +54,30 @@ else
 
     protected override async Task OnInitializedAsync()
     {
+        await CarregarFestes();
+    }
+
+    private async Task CarregarFestes()
+    {
         var responseHttp = await repositori.Get<List<CalendariFestes>>("api/festes");
         if (!responseHttp.Error)
         {
             festesCalendari = responseHttp.Response;
         }
+    }
+
+    private async Task EsborrarFesta(CalendariFestes fest)
+    {
+        var responseHttp = await repositori.Delete($"api/festes/{fest.Id}");
+        if (responseHttp.Error)
+        {
+            //await mostrarMensajes.MostrarMensajeError(await responseHttp.GetBody());
+        }
         else
         {
-            var body = await responseHttp.HttpResponseMessage.Content.ReadAsStringAsync();
-            //Console.Writeline("body");
+            await CarregarFestes();
         }
 
     }
-
-
 
 }

@@ -12,7 +12,7 @@ namespace Calendaris.Shared.Entities
         public int Id { get; set; }
         public DateTime Data { get; set; }
         public string Festa { get; set; }
-        public Tipusfesta Tipus { get; set; }
+        public TipusFesta Tipus { get; set; }
         public string Observacions { get; set; }
     }
 }

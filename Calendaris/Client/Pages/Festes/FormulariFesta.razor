@@ -1,0 +1,39 @@
+﻿<EditForm Model="Festa" OnValidSubmit="OnValidSubmit">
+    <DataAnnotationsValidator />
+    <div class="form-group">
+        <label>Data:</label>
+        <div>
+            <InputDate class="form-control" @bind-Value="@Festa.Data" />
+            <ValidationMessage For="@(() => Festa.Data)" />
+        </div>
+        <label>Festa:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Festa.Festa" />
+            <ValidationMessage For="@(() => Festa.Festa)" />
+        </div>
+        <label>Tipus:</label>
+        <div>
+            <InputSelect class="form-control" @bind-Value="@Festa.Tipus">
+
+                @foreach (var value in Enum.GetValues(typeof(TipusFesta)))
+                {
+                    <option>@value</option>
+                }
+            </InputSelect>
+
+            <ValidationMessage For="@(() => Festa.Tipus)" />
+        </div>
+        <label>Observacions:</label>
+        <div>
+            <InputText class="form-control" @bind-Value="@Festa.Observacions" />
+            <ValidationMessage For="@(() => Festa.Observacions)" />
+        </div>
+    </div>
+
+    <button class="btn btn-success" type="submit">Desar Canvis</button>
+</EditForm>
+
+@code { 
+    [Parameter] public CalendariFestes Festa { get; set; }
+    [Parameter] public EventCallback OnValidSubmit { get; set; } 
+}
