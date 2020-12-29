@@ -21,7 +21,8 @@ else
             AllowPaging="true" 
             AllowSorting="true"
             AllowFiltering="true"
-            AllowGrouping="true">
+            AllowGrouping="true"
+            AllowResizing="true">
         <GridPageSettings PageSize="5"></GridPageSettings>
         <GridColumns>
             <GridColumn Field="@nameof(Treballador.Id)"
@@ -162,7 +163,7 @@ else
 }
 @code {
     List<Treballador> treballadors { get; set; }
-    public string[] ToolbarItems = new string[] { "Tria les Columnes" };
+    public string[] ToolbarItems = new string[] { "ColumnChooser" };
 
 
     protected override async Task OnInitializedAsync()
