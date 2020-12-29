@@ -16,77 +16,154 @@ else if (treballadors.Count == 0)
 }
 else
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Codi</th>
-                <th>Nom</th>
-                <th>Primer Cognom</th>
-                <th>Segon Cognom</th>
-                <th>NIF</th>
-                <th>NSS</th>
-                <th>Adreça</th>
-                <th>CP</th>
-                <th>Poblacio</th>
-                <th>Provincia</th>
-                <th>Telefon1</th>
-                <th>Telefon2</th>
-                <th>Telefon3</th>
-                <th>Mobil1</th>
-                <th>Mobil2</th>
-                <th>Mobil3</th>
-                <th>Email1</th>
-                <th>Email2</th>
-                <th>Email3</th>
-                <th>Centre</th>
-                <th>Departament</th>
-                <th>Data Alta</th>
-                <th>Data Baixa</th>
-                <th>Observacions</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (Treballador tre in treballadors)
-            {
-            <tr>
-                <td>@tre.Id</td>
-                <td>@tre.Codi</td>
-                <td>@tre.Nom</td>
-                <td>@tre.PrimerCognom</td>
-                <td>@tre.SegonCognom</td>
-                <td>@tre.NIF</td>
-                <td>@tre.NSS</td>
-                <td>@tre.Adreça</td>
-                <td>@tre.CP</td>
-                <td>@tre.Poblacio</td>
-                <td>@tre.Provincia</td>
-                <td>@tre.Telefon1</td>
-                <td>@tre.Telefon2</td>
-                <td>@tre.Telefon3</td>
-                <td>@tre.Mobil1</td>
-                <td>@tre.Mobil2</td>
-                <td>@tre.Mobil3</td>
-                <td>@tre.Email1</td>
-                <td>@tre.Email2</td>
-                <td>@tre.Email3</td>
-                <td>@tre.Centre</td>
-                <td>@tre.Departament</td>
-                <td>@tre.DataAlta</td>
-                <td>@tre.DataBaixa</td>
-                <td>@tre.Observacions</td>
-                <td>
-                    <a class="btn btn-success" href="treballadors/crear_plantilla/@tre.Id">Crear Plantilla</a>
-                    <a class="btn btn-danger" href="treballador/editar_plantilla/@tre.Id">Editar Plantilla</a>
-                </td>
-            </tr>
-            }
-        </tbody>
-    </table>
+    <SfGrid DataSource="@treballadors" 
+            ShowColumnChooser="true" Toolbar=@ToolbarItems
+            AllowPaging="true" 
+            AllowSorting="true"
+            AllowFiltering="true"
+            AllowGrouping="true">
+        <GridPageSettings PageSize="5"></GridPageSettings>
+        <GridColumns>
+            <GridColumn Field="@nameof(Treballador.Id)"
+                        HeaderText="ID"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Codi)"
+                        HeaderText="Codi"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Nom)"
+                        HeaderText="Nom"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.PrimerCognom)"
+                        HeaderText="1er Cognom"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.SegonCognom)"
+                        HeaderText="2on Cognom"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.NIF)"
+                        HeaderText="NIF"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.NSS)"
+                        HeaderText="NSS"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Adreça)"
+                        HeaderText="Adreça"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.CP)"
+                        HeaderText="CPostal"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Poblacio)"
+                        HeaderText="Població"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Provincia)"
+                        HeaderText="Provincia"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Telefon1)"
+                        HeaderText="Telefon 1"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Telefon2)"
+                        HeaderText="Telefon 2 "
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Telefon3)"
+                        HeaderText="Telefon 3"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Mobil1)"
+                        HeaderText="Mobil 1"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Mobil2)"
+                        HeaderText="Mobil 2"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Mobil3)"
+                        HeaderText="Mobil 3"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Email1)"
+                        HeaderText="Email 1"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Email2)"
+                        HeaderText="Email 2"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Email3)"
+                        HeaderText="Email 3"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Centre)"
+                        HeaderText="Centre"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Departament)"
+                        HeaderText="Dept."
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.DataAlta)"
+                        HeaderText="Data Alta"
+                        TextAlign="TextAlign.Center"
+                        Format="d"
+                        Type="ColumnType.Date"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.DataBaixa)"
+                        HeaderText="Data Baixa"
+                        TextAlign="TextAlign.Center"
+                        Format="d"
+                        Type="ColumnType.Date"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Treballador.Observacions)"
+                        HeaderText="Observacions"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn HeaderText="Crear Plantilla"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
 }
 @code {
     List<Treballador> treballadors { get; set; }
+    public string[] ToolbarItems = new string[] { "Tria les Columnes" };
+
 
     protected override async Task OnInitializedAsync()
     {
