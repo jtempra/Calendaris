@@ -60,6 +60,56 @@ namespace Calendaris.Server.Contextes
                 new Conveni { Id = 3, Codi = "79001565011999", DataInici = new DateTime(2019,2,7), HoresAnuals = 1250, Nom = "Centres especials de treballadors disminuits fisics o sensorials de Catalunya" }
             );
 
+            var plantilla1 = new PlantillaCalendari
+                {Id = 1, Nom = "Plantilla1", DataInici = new DateTime(2021, 1, 1), Observacions = "Plantilla 1"};
+            var plantilla2 = new PlantillaCalendari
+                {Id = 2, Nom = "Plantilla2", DataInici = new DateTime(2021, 1, 1), Observacions = "Plantilla 2"};
+
+            modelBuilder.Entity<PlantillaCalendari>().HasData(plantilla1, plantilla2);
+
+            var detallplantilla1 = new DetallPlantillaCalendari
+            {
+                Id = 1,
+                DataInicial = new DateTime(2021, 1, 1),
+                DataFinal = new DateTime(2021, 7, 31),
+                HoraInici1 = new TimeSpan(7, 0, 0),
+                HoraFinal1 = new TimeSpan(13,0,0),
+                HoraInici2 = new TimeSpan(15, 0, 0),
+                HoraFinal2 = new TimeSpan(19, 0, 0),
+                Vacances = false, Observacions = "tram1",
+                PlantillaCalendariId = 1
+            };
+
+            var detallplantilla2 = new DetallPlantillaCalendari
+            {
+                Id = 2,
+                DataInicial = new DateTime(2021, 8, 1),
+                DataFinal = new DateTime(2021, 8, 31),
+                Vacances = true,
+                Observacions = "tram vacances",
+                PlantillaCalendariId = 1
+            };
+
+            var detallplantilla3 = new DetallPlantillaCalendari
+            {
+                Id = 3,
+                DataInicial = new DateTime(2021, 9, 1),
+                DataFinal = new DateTime(2021, 12, 31),
+                HoraInici1 = new TimeSpan(7, 0, 0),
+                HoraFinal1 = new TimeSpan(13, 0, 0),
+                HoraInici2 = new TimeSpan(15, 0, 0),
+                HoraFinal2 = new TimeSpan(19, 0, 0),
+                Vacances = true,
+                Observacions = "tram tram2",
+                PlantillaCalendariId = 1
+            };
+
+
+            
+            modelBuilder.Entity<DetallPlantillaCalendari>().HasData(
+                detallplantilla1,detallplantilla2,detallplantilla3
+                    );
+
             modelBuilder.Entity<Treballador>().HasData(
                 new Treballador { Id = 1, Codi = "T1", Nom = "Joan", PrimerCognom = "Lopez", SegonCognom = "Teclas", NIF = "77653456A", NSS = "081234567890", Adreça = "Carrer Badal, 45", CP = "08000", Poblacio = "Barcelona", Provincia = "Barcelona", Telefon1 = "938065434", Mobil1 = "600102030", Email1 = "jlopez@terra.es", Centre = Centre.Barcelona, Departament = Departament.Administracio, DataAlta = new DateTime(2010,1,1) },
                 new Treballador { Id = 2, Codi = "T2", Nom = "Julia", PrimerCognom = "Garcia", SegonCognom = "Vacas", NIF = "67345768B", NSS = "501234567890", Adreça = "Calle los Mañicos, 56", CP = "50000", Poblacio = "Zaragoza", Provincia = "Zaragoza", Telefon1 = "976436574", Mobil1 = "600102030", Email1 = "jgvacas@gmail.com", Centre = Centre.Saragossa, Departament = Departament.Administracio, DataAlta = new DateTime(2010, 1, 1) },

@@ -1,0 +1,155 @@
+﻿@page "/plantilles"
+@using Syncfusion.Blazor.Data
+
+@inject IRepositori repositori
+
+<h3>Plantilles calendaris</h3>
+
+<small>Pàgina per veure les plantilles de calendaris</small>
+
+<br>
+
+@if (plantilles == null)
+{
+    <text>Carregant...</text>
+}
+else if (plantilles.Count == 0)
+{
+    <text>No Records Found.</text>
+}
+else
+{
+<SfGrid SelectedRowIndex=0 DataSource="@plantilles"
+        ShowColumnChooser="true"
+            AllowPaging="true"
+            AllowSorting="true"
+            AllowFiltering="true"
+            AllowGrouping="true"
+            AllowResizing="true">
+        <GridEvents RowSelected="RowSelectHandler" TValue="PlantillaCalendari"></GridEvents>
+        <GridPageSettings PageSize="5"></GridPageSettings>
+        <GridColumns>
+            <GridColumn Field="@nameof(PlantillaCalendari.Id)"
+                        HeaderText="ID"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(PlantillaCalendari.Nom)"
+                        HeaderText="Nom"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(PlantillaCalendari.DataInici)"
+                        HeaderText="Data Inici"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(PlantillaCalendari.DataFinal)"
+                        HeaderText="Data Final"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+
+            <GridColumn Field="@nameof(PlantillaCalendari.Observacions)"
+                        HeaderText="Observacions"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+
+    <br>
+
+    <SfGrid DataSource="@detallsplantilles"
+            Query="@(new Query().Where("PlantillaCalendariId", "equal", RowIndex))">
+        <GridColumns>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.Id)"
+                        HeaderText="ID"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.DataInicial)"
+                        HeaderText="Data Inicial"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.DataFinal)"
+                        HeaderText="Data Final"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.HoraInici1)"
+                        HeaderText="Hora Inici 1"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.HoraFinal1)"
+                        HeaderText="Hora Final 1"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.HoraInici2)"
+                        HeaderText="Hora Inici 2"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.HoraFinal2)"
+                        HeaderText="Hora Final 2"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.HoraInici3)"
+                        HeaderText="Hora Inici 3"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.HoraFinal3)"
+                        HeaderText="Hora Final 3"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.Vacances)"
+                        HeaderText="Vacances"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(DetallPlantillaCalendari.Observacions)"
+                        HeaderText="Observacions"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
+
+@code {
+
+    public IEnumerable<DetallPlantillaCalendari> GridData { get; set; }
+    public string SelectedPlantilla { get; set; }
+    public int? RowIndex { get; set; } = 1;
+
+    public void RowSelectHandler(RowSelectEventArgs<PlantillaCalendari> Args)
+    {
+        SelectedPlantilla = Args.Data.Nom;
+        RowIndex = Args.Data.Id;
+    }
+    List<PlantillaCalendari> plantilles { get; set; }
+    List<DetallPlantillaCalendari> detallsplantilles { get; set; }
+
+    protected override async Task OnInitializedAsync()
+    {
+
+        var responseHttp =  await repositori.Get<List<PlantillaCalendari>>("api/plantilles");
+        if (!responseHttp.Error)
+        {
+            plantilles = responseHttp.Response;
+        }
+
+        var responseHttp2 = await repositori.Get<List<DetallPlantillaCalendari>>("api/detallsplantilles");
+        if (!responseHttp2.Error)
+        {
+            detallsplantilles = responseHttp2.Response;
+        }
+
+    }
+}

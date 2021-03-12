@@ -1,6 +1,7 @@
 ﻿using System.Net.Http;
 using System.Text;
 using System.Text.Json;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Calendaris.Client.Repos
@@ -15,7 +16,7 @@ namespace Calendaris.Client.Repos
         }
 
         private JsonSerializerOptions OpcionesPorDefectoJSON =>
-            new JsonSerializerOptions() { PropertyNameCaseInsensitive = true };
+            new JsonSerializerOptions() { PropertyNameCaseInsensitive = true};
 
         public async Task<HttpResponseWrapper<T>> Get<T>(string url)
         {

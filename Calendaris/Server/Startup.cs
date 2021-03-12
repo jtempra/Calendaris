@@ -26,7 +26,7 @@ namespace Calendaris.Server
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<CalendarisDbContext>(options => 
-            options.UseSqlServer(Configuration.GetConnectionString("CalendarisDB2"))); ;
+            options.UseSqlServer(Configuration.GetConnectionString("CalendarisDB3"))); ;
             services.AddControllersWithViews().AddNewtonsoftJson(
                 options => options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore); ;
             services.AddRazorPages();

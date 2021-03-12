@@ -1,15 +1,14 @@
 ﻿<EditForm Model="Festa" OnValidSubmit="OnValidSubmit">
-    <DataAnnotationsValidator />
+    <FluentValidationValidator />
+    <ValidationSummary />
     <div class="form-group">
         <label>Data:</label>
         <div>
-            <InputDate class="form-control" @bind-Value="@Festa.Data" />
-            <ValidationMessage For="@(() => Festa.Data)" />
+            <InputDate class="form-control" @bind-Value="@Festa.Data"/>
         </div>
         <label>Festa:</label>
         <div>
-            <InputText class="form-control" @bind-Value="@Festa.Festa" />
-            <ValidationMessage For="@(() => Festa.Festa)" />
+            <InputText class="form-control" @bind-Value="@Festa.Festa"/>
         </div>
         <label>Tipus:</label>
         <div>
@@ -20,13 +19,10 @@
                     <option>@value</option>
                 }
             </InputSelect>
-
-            <ValidationMessage For="@(() => Festa.Tipus)" />
         </div>
         <label>Observacions:</label>
         <div>
-            <InputText class="form-control" @bind-Value="@Festa.Observacions" />
-            <ValidationMessage For="@(() => Festa.Observacions)" />
+            <InputText class="form-control" @bind-Value="@Festa.Observacions"/>
         </div>
     </div>
 

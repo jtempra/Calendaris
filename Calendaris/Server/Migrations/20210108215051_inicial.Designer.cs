@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Calendaris.Server.Migrations
 {
     [DbContext(typeof(CalendarisDbContext))]
-    [Migration("20201222221419_inicial")]
+    [Migration("20210108215051_inicial")]
     partial class inicial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -291,28 +291,28 @@ namespace Calendaris.Server.Migrations
                         .HasColumnType("Date")
                         .HasColumnName("DataInicial");
 
-                    b.Property<DateTime>("HoraFinal1")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraFinal1")
+                        .HasColumnType("time")
                         .HasColumnName("HoraFinal1");
 
-                    b.Property<DateTime>("HoraFinal2")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraFinal2")
+                        .HasColumnType("time")
                         .HasColumnName("HoraFinal2");
 
-                    b.Property<DateTime>("HoraFinal3")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraFinal3")
+                        .HasColumnType("time")
                         .HasColumnName("HoraFinal3");
 
-                    b.Property<DateTime>("HoraInici1")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraInici1")
+                        .HasColumnType("time")
                         .HasColumnName("HoraInici1");
 
-                    b.Property<DateTime>("HoraInici2")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraInici2")
+                        .HasColumnType("time")
                         .HasColumnName("HoraInici2");
 
-                    b.Property<DateTime>("HoraInici3")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraInici3")
+                        .HasColumnType("time")
                         .HasColumnName("HoraInici3");
 
                     b.Property<string>("Observacions")
@@ -347,28 +347,28 @@ namespace Calendaris.Server.Migrations
                         .HasColumnType("Date")
                         .HasColumnName("DataInicial");
 
-                    b.Property<DateTime>("HoraFinal1")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraFinal1")
+                        .HasColumnType("time")
                         .HasColumnName("HoraFinal1");
 
-                    b.Property<DateTime>("HoraFinal2")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraFinal2")
+                        .HasColumnType("time")
                         .HasColumnName("HoraFinal2");
 
-                    b.Property<DateTime>("HoraFinal3")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraFinal3")
+                        .HasColumnType("time")
                         .HasColumnName("HoraFinal3");
 
-                    b.Property<DateTime>("HoraInici1")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraInici1")
+                        .HasColumnType("time")
                         .HasColumnName("HoraInici1");
 
-                    b.Property<DateTime>("HoraInici2")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraInici2")
+                        .HasColumnType("time")
                         .HasColumnName("HoraInici2");
 
-                    b.Property<DateTime>("HoraInici3")
-                        .HasColumnType("DateTime")
+                    b.Property<TimeSpan>("HoraInici3")
+                        .HasColumnType("time")
                         .HasColumnName("HoraInici3");
 
                     b.Property<string>("Observacions")
@@ -377,7 +377,7 @@ namespace Calendaris.Server.Migrations
                         .HasColumnType("varchar(500)")
                         .HasColumnName("Observacions");
 
-                    b.Property<int?>("PlantillaCalendariId")
+                    b.Property<int>("PlantillaCalendariId")
                         .HasColumnType("int");
 
                     b.Property<bool>("Vacances")
@@ -389,6 +389,53 @@ namespace Calendaris.Server.Migrations
                     b.HasIndex("PlantillaCalendariId");
 
                     b.ToTable("DetallsPlantillaCalendari");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DataFinal = new DateTime(2021, 7, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataInicial = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HoraFinal1 = new TimeSpan(0, 13, 0, 0, 0),
+                            HoraFinal2 = new TimeSpan(0, 19, 0, 0, 0),
+                            HoraFinal3 = new TimeSpan(0, 0, 0, 0, 0),
+                            HoraInici1 = new TimeSpan(0, 7, 0, 0, 0),
+                            HoraInici2 = new TimeSpan(0, 15, 0, 0, 0),
+                            HoraInici3 = new TimeSpan(0, 0, 0, 0, 0),
+                            Observacions = "tram1",
+                            PlantillaCalendariId = 1,
+                            Vacances = false
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DataFinal = new DateTime(2021, 8, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataInicial = new DateTime(2021, 8, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HoraFinal1 = new TimeSpan(0, 0, 0, 0, 0),
+                            HoraFinal2 = new TimeSpan(0, 0, 0, 0, 0),
+                            HoraFinal3 = new TimeSpan(0, 0, 0, 0, 0),
+                            HoraInici1 = new TimeSpan(0, 0, 0, 0, 0),
+                            HoraInici2 = new TimeSpan(0, 0, 0, 0, 0),
+                            HoraInici3 = new TimeSpan(0, 0, 0, 0, 0),
+                            Observacions = "tram vacances",
+                            PlantillaCalendariId = 1,
+                            Vacances = true
+                        },
+                        new
+                        {
+                            Id = 3,
+                            DataFinal = new DateTime(2021, 12, 31, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            DataInicial = new DateTime(2021, 9, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            HoraFinal1 = new TimeSpan(0, 13, 0, 0, 0),
+                            HoraFinal2 = new TimeSpan(0, 19, 0, 0, 0),
+                            HoraFinal3 = new TimeSpan(0, 0, 0, 0, 0),
+                            HoraInici1 = new TimeSpan(0, 7, 0, 0, 0),
+                            HoraInici2 = new TimeSpan(0, 15, 0, 0, 0),
+                            HoraInici3 = new TimeSpan(0, 0, 0, 0, 0),
+                            Observacions = "tram tram2",
+                            PlantillaCalendariId = 1,
+                            Vacances = true
+                        });
                 });
 
             modelBuilder.Entity("Calendaris.Shared.Entities.PlantillaCalendari", b =>
@@ -406,6 +453,9 @@ namespace Calendaris.Server.Migrations
                         .HasColumnType("Date")
                         .HasColumnName("DataInici");
 
+                    b.Property<string>("Nom")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Observacions")
                         .HasMaxLength(500)
                         .IsUnicode(false)
@@ -420,6 +470,22 @@ namespace Calendaris.Server.Migrations
                     b.HasIndex("TreballadorId");
 
                     b.ToTable("PlantillesCalendari");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            DataInici = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Plantilla1",
+                            Observacions = "Plantilla 1"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            DataInici = new DateTime(2021, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Nom = "Plantilla2",
+                            Observacions = "Plantilla 2"
+                        });
                 });
 
             modelBuilder.Entity("Calendaris.Shared.Entities.Treballador", b =>
@@ -599,7 +665,7 @@ namespace Calendaris.Server.Migrations
                             Id = 2,
                             Adreça = "Calle los Mañicos, 56",
                             CP = "50000",
-                            Centre = 0,
+                            Centre = 2,
                             Codi = "T2",
                             DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Departament = 1,
@@ -619,7 +685,7 @@ namespace Calendaris.Server.Migrations
                             Id = 3,
                             Adreça = "Carrer de les Falles",
                             CP = "46000",
-                            Centre = 0,
+                            Centre = 1,
                             Codi = "T3",
                             DataAlta = new DateTime(2010, 1, 1, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             Departament = 1,
@@ -817,7 +883,9 @@ namespace Calendaris.Server.Migrations
                 {
                     b.HasOne("Calendaris.Shared.Entities.PlantillaCalendari", "PlantillaCalendari")
                         .WithMany("DetallsPlantillaCalendari")
-                        .HasForeignKey("PlantillaCalendariId");
+                        .HasForeignKey("PlantillaCalendariId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("PlantillaCalendari");
                 });
