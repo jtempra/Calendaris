@@ -12,6 +12,7 @@ namespace Calendaris.Shared.Entities
         public Treballador Treballador { get; set; }
         public int Any { get; set; }
         public DateTime DataConfeccio { get; set; }
+        public Boolean Actiu { get; set; }
         public string Observacions { get; set; }
         public List<DetallCalendariTreballador> DetallCalendariTreballador { get; set; }
     }

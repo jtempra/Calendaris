@@ -13,23 +13,61 @@
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="CalendariFestes">
-                <span class="oi oi-plus" aria-hidden="true"></span> Calendari Festes
+            <NavLink class="nav-link" href="CentresTreball">
+                <span class="oi oi-plus" aria-hidden="true"></span> Centres Treball
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="Departaments">
+                <span class="oi oi-plus" aria-hidden="true"></span> Departaments
             </NavLink>
         </li>
         <li class="nav-item px-3">
             <NavLink class="nav-link" href="Festes">
-                <span class="oi oi-plus" aria-hidden="true"></span> Festes
+                <span class="oi oi-plus" aria-hidden="true"></span> Calendari Festes
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Plantilles">
-                <span class="oi oi-plus" aria-hidden="true"></span> Plantilles
+            <NavLink class="nav-link" href="Convenis">
+                <span class="oi oi-plus" aria-hidden="true"></span> Convenis
             </NavLink>
         </li>
         <li class="nav-item px-3">
-            <NavLink class="nav-link" href="Treballadors">
+            <NavLink class="nav-link" href="" @onclick="()=>expandSubMenu = !expandSubMenu">
                 <span class="oi oi-plus" aria-hidden="true"></span> Treballadors
+            </NavLink>
+            @if (expandSubMenu)
+            {
+                <ul class="nav flex-column">
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="Treballadors">
+                            <span class="oi oi-file" aria-hidden="true"></span> Convenis 
+                        </NavLink>
+                    </li>
+               
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="PlantillesTreballadors">
+                            <span class="oi oi-file" aria-hidden="true"></span> Plantilles 
+                        </NavLink>
+                    </li>
+               
+                    <li class="nav-item px-3">
+                        <NavLink class="nav-link" href="Calendaris Treballadors">
+                            <span class="oi oi-file" aria-hidden="true"></span> Calendaris 
+                        </NavLink>
+
+                    </li>
+                </ul>
+            } 
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="PlantillesCalendari">
+                <span class="oi oi-plus" aria-hidden="true"></span> Plantilles Calendari
+            </NavLink>
+        </li>
+        <li class="nav-item px-3">
+            <NavLink class="nav-link" href="AplicarPlantilla">
+                <span class="oi oi-plus" aria-hidden="true"></span> Aplicar Plantilla
             </NavLink>
         </li>
     </ul>
@@ -37,6 +75,7 @@
 
 @code {
     private bool collapseNavMenu = true;
+    private bool expandSubMenu;
 
     private string NavMenuCssClass => collapseNavMenu ? "collapse" : null;
 

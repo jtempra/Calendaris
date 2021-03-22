@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Calendaris.Client.Repos;
 
 namespace Calendaris.Server.Controllers
 {
@@ -27,6 +28,7 @@ namespace Calendaris.Server.Controllers
         public async Task<ActionResult<List<CalendariFestes>>> Get()
         {
             var festes = await _context.CalendarisFestes.ToListAsync();
+
             return Ok(festes);
         }
 

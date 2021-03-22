@@ -16,19 +16,25 @@ else if (treballadors.Count == 0)
 }
 else
 {
-    <SfGrid DataSource="@treballadors" 
+    <SfGrid DataSource="@treballadors"
             ShowColumnChooser="true" Toolbar=@ToolbarItems
-            AllowPaging="true" 
+            AllowPaging="true"
             AllowSorting="true"
             AllowFiltering="true"
             AllowGrouping="true"
             AllowResizing="true">
+        <GridEditSettings
+            AllowAdding="true"
+            AllowEditing="true"
+            AllowDeleting="true">
+        </GridEditSettings>
         <GridPageSettings PageSize="5"></GridPageSettings>
         <GridColumns>
             <GridColumn Field="@nameof(Treballador.Id)"
                         HeaderText="ID"
                         TextAlign="TextAlign.Center"
-                        Width="120">
+                        Width="120"
+                        IsPrimaryKey="true">
             </GridColumn>
             <GridColumn Field="@nameof(Treballador.Codi)"
                         HeaderText="Codi"
@@ -128,12 +134,14 @@ else
             <GridColumn Field="@nameof(Treballador.Centre)"
                         HeaderText="Centre"
                         TextAlign="TextAlign.Center"
-                        Width="120">
+                        Width="120"
+                        EditType="EditType.DropDownEdit">
             </GridColumn>
             <GridColumn Field="@nameof(Treballador.Departament)"
                         HeaderText="Dept."
                         TextAlign="TextAlign.Center"
-                        Width="120">
+                        Width="120"
+                        EditType="EditType.DropDownEdit">
             </GridColumn>
             <GridColumn Field="@nameof(Treballador.DataAlta)"
                         HeaderText="Data Alta"
@@ -154,16 +162,12 @@ else
                         TextAlign="TextAlign.Center"
                         Width="120">
             </GridColumn>
-            <GridColumn HeaderText="Crear Plantilla"
-                        TextAlign="TextAlign.Center"
-                        Width="120">
-            </GridColumn>
         </GridColumns>
     </SfGrid>
 }
 @code {
     List<Treballador> treballadors { get; set; }
-    public string[] ToolbarItems = new string[] { "Editar Plantilla", "Crear Plantilla", "ColumnChooser" };
+    public string[] ToolbarItems = new string[] { "Add", "Edit","Delete", "Update","Cancel"};
 
 
     protected override async Task OnInitializedAsync()

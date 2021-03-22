@@ -1,0 +1,89 @@
+﻿@page "/convenis"
+@using Syncfusion.Blazor.Navigations
+@inject IRepositori repositori
+
+<h3>Convenis</h3>
+
+@if (convenis == null)
+{
+    <text>Carregant...</text>
+}
+else if (convenis.Count == 0)
+{
+    <text>No Records Found.</text>
+}
+else
+{
+    <SfGrid DataSource="@convenis" Toolbar="@ToolbarItems"
+            AllowPaging="true"
+            AllowSorting="true"
+            AllowFiltering="true"
+            AllowGrouping="true"
+            AllowResizing="true">
+        <GridEditSettings AllowAdding="true"
+                          AllowEditing="true"
+                          AllowDeleting="true"
+                          Mode="EditMode.Dialog">
+        </GridEditSettings>
+        <GridPageSettings PageSize="5"></GridPageSettings>
+        <GridColumns>
+            <GridColumn Field="@nameof(Conveni.Id)"
+                        HeaderText="ID"
+                        TextAlign="TextAlign.Center"
+                        Width="120"
+                        IsPrimaryKey="true">
+            </GridColumn>
+            <GridColumn Field="@nameof(Conveni.Codi)"
+                        HeaderText="Codi"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Conveni.Nom)"
+                        HeaderText="Nom"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Conveni.HoresAnuals)"
+                        HeaderText="Hores/Any"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Conveni.DataInici)"
+                        HeaderText="Data Inici"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(Conveni.DataFinal)"
+                        HeaderText="Data Final"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+
+            <GridColumn Field="@nameof(Conveni.Observacions)"
+                        HeaderText="Observacions"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
+@code {
+    List<Conveni> convenis { get; set; }
+
+    public string[] ToolbarItems = new string[] {"Add", "Edit", "Delete", "Update", "Cancel"};
+
+    protected override async Task OnInitializedAsync()
+    {
+        await CarregarConvenis();
+    }
+
+    private async Task CarregarConvenis()
+    {
+        var responseHttp = await repositori.Get<List<Conveni>>("api/convenis");
+        if (!responseHttp.Error)
+        {
+            convenis = responseHttp.Response;
+        }
+    }
+
+}

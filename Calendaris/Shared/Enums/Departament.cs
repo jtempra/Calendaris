@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace Calendaris.Shared.Enums
 {
+    // departaments de cada centre, haura de ser una taula relacionada amb centres
     public enum Departament
     {
         Gerencia,

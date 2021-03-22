@@ -37,7 +37,6 @@ namespace Calendaris.Shared.Entities
         public string Observacions { get; set; }
         public List<ConveniTreballador> ConvenisTreballador { get; set; }
         public List<PlantillaCalendari> PlantillaCalendari { get; set; }
-
-
+        public List<CalendariTreballador> CalendarisTreballador { get; set; }
     }
 }

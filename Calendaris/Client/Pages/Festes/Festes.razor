@@ -1,13 +1,10 @@
 ﻿@page "/festes"
+@using Syncfusion.Blazor
+@using Syncfusion.Blazor.Navigations
 @inject IRepositori repositori
 
 <h3>Festes</h3>
 
-<small>Pàgina per treballar amb les festes</small>
-
-<div class="form-group">
-    <a class="btn btn-success" href="festes/crear"><i class="oi oi-plus"></i> Crear Festa</a>
-</div>
 
 <br>
 @if (festesCalendari == null)
@@ -20,64 +17,101 @@ else if (festesCalendari.Count == 0)
 }
 else
 {
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Data</th>
-                <th>Festa</th>
-                <th>Tipus</th>
-                <th>Observacions</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-            @foreach (CalendariFestes fes in festesCalendari)
+    <SfToast @ref="ToastObj" Title="Adaptive Tiles Meeting" Timeout=5000 Icon="e-meeting" Content="@contingutToast"></SfToast>
+    <SfGrid DataSource="@festesCalendari" Toolbar="Toolbaritems"
+            AllowPaging="true"
+            AllowSorting="true"
+            AllowFiltering="true"
+            AllowGrouping="true"
+            AllowResizing="true">
+        <GridEvents OnToolbarClick="ToolbarClickHandler" RowSelected="RowSelectHandler" TValue="CalendariFestes"></GridEvents>
+        <GridEditSettings AllowAdding="true"
+                          AllowEditing="true"
+                          AllowDeleting="true">
+
+        </GridEditSettings>
+        <GridPageSettings PageSize="5"></GridPageSettings>
+        <GridColumns>
+            <GridColumn Field="@nameof(CalendariFestes.Id)"
+                        HeaderText="ID"
+                        TextAlign="TextAlign.Center"
+                        Width="120"
+                        IsPrimaryKey="true"
+                        IsIdentity="true">
+            </GridColumn>
+            <GridColumn Field="@nameof(CalendariFestes.Data)"
+                        HeaderText="Data"
+                        TextAlign="TextAlign.Center"
+                        Width="120"
+                        Format="d"
+                        Type="ColumnType.Date">
+            </GridColumn>
+            <GridColumn Field="@nameof(CalendariFestes.Festa)"
+                        HeaderText="Nom"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(CalendariFestes.Tipus)"
+                        HeaderText="Tipus Festa"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+            <GridColumn Field="@nameof(CalendariFestes.Observacions)"
+                        HeaderText="Observacions"
+                        TextAlign="TextAlign.Center"
+                        Width="120">
+            </GridColumn>
+        </GridColumns>
+    </SfGrid>
+}
+
+        @code {
+
+            SfToast ToastObj;
+
+            public string contingutToast;
+
+            List<CalendariFestes> festesCalendari { get; set; }
+
+            public string[] EnumTipusFesta = Enum.GetNames(typeof(TipusFesta));
+
+            private List<ItemModel> Toolbaritems = new List<ItemModel>();
+
+            public CalendariFestes festaSeleccionada = new CalendariFestes();
+
+            protected override async Task OnInitializedAsync()
             {
-                <tr>
-                    <td>@fes.Id</td>
-                    <td>@fes.Data</td>
-                    <td>@fes.Festa</td>
-                    <td>@fes.Tipus</td>
-                    <td>@fes.Observacions</td>
-                    <td>
-                        <a class="btn btn-success" href="festes/editar/@fes.Id">Editar</a>
-                        <button class="btn btn-danger" @onclick="@(() => EsborrarFesta(fes))">Esborrar</button>
-                    </td>
-                </tr>
+                await CarregarFestes();
+                Toolbaritems.Add(new ItemModel() { Text = "Afegir", TooltipText = "Expand all", PrefixIcon = "e-expand" });
+                Toolbaritems.Add(new ItemModel() { Text = "Editar", TooltipText = "Collapse all", PrefixIcon = "e-collapse" });
             }
-        </tbody>
-    </table>
-}
-@code {
-    List<CalendariFestes> festesCalendari { get; set; }
 
-    protected override async Task OnInitializedAsync()
-    {
-        await CarregarFestes();
-    }
+            private async Task CarregarFestes()
+            {
+                var responseHttp = await repositori.Get<List<CalendariFestes>>("api/festes");
+                if (!responseHttp.Error)
+                {
+                    festesCalendari = responseHttp.Response;
+                }
+            }
 
-    private async Task CarregarFestes()
-    {
-        var responseHttp = await repositori.Get<List<CalendariFestes>>("api/festes");
-        if (!responseHttp.Error)
-        {
-            festesCalendari = responseHttp.Response;
+            public async void ToolbarClickHandler(Syncfusion.Blazor.Navigations.ClickEventArgs args)
+            {
+                if (args.Item.Text == "Afegir")
+                {
+                    contingutToast = "afegir registre";
+                    await this.ToastObj.Show();
+                }
+                if (args.Item.Text == "Editar")
+                {
+                    contingutToast = festaSeleccionada.Id.ToString();
+                    await this.ToastObj.Show();
+                }
+            }
+
+            public void RowSelectHandler(RowSelectEventArgs<CalendariFestes> args)
+            {
+                festaSeleccionada = args.Data;
+            }
+
         }
-    }
-
-    private async Task EsborrarFesta(CalendariFestes fest)
-    {
-        var responseHttp = await repositori.Delete($"api/festes/{fest.Id}");
-        if (responseHttp.Error)
-        {
-            //await mostrarMensajes.MostrarMensajeError(await responseHttp.GetBody());
-        }
-        else
-        {
-            await CarregarFestes();
-        }
-
-    }
-
-}

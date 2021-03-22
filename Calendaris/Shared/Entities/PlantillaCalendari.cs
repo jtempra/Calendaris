@@ -12,6 +12,7 @@ namespace Calendaris.Shared.Entities
         public string Nom { get; set; }
         public DateTime DataInici { get; set; }
         public DateTime? DataFinal { get; set; }
+        public Boolean Activa { get; set; }
         public string Observacions { get; set; }
         public Treballador Treballador { get; set; }
 

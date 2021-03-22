@@ -13,7 +13,7 @@ namespace Calendaris.Shared.Entities
         public string Nom { get; set; }
         public int HoresAnuals { get; set; }
         public DateTime DataInici { get; set; }
-        public DateTime DataFinal { get; set; }
+        public DateTime? DataFinal { get; set; }
         public string Observacions { get; set; }
         public List<ConveniTreballador> Convenistreballador { get; set; }
     }
